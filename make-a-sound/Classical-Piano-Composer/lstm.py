@@ -10,7 +10,7 @@ from keras.layers import Dropout
 from keras.layers import LSTM
 from keras.layers import Activation
 from keras.utils import np_utils
-from keras.callbacks import ModelCheckpoint
+from keras.callbacks import ModelCheckpoint, CSVLogger, TerminateOnNaN
 
 def train_network():
     """ Train a Neural Network to generate music """
@@ -29,7 +29,7 @@ def get_notes():
     """ Get all the notes and chords from the midi files in the ./midi_songs directory """
     notes = []
 
-    for file in glob.glob("midi_songs/*.mid"):
+    for file in glob.glob("midi_songs_mini/*.mid"):
         midi = converter.parse(file)
 
         print("Parsing %s" % file)
@@ -114,9 +114,13 @@ def train(model, network_input, network_output):
         save_best_only=True,
         mode='min'
     )
-    callbacks_list = [checkpoint]
+    filepath_acc="CSV-DATEI.csv"
+    accuracy = CSVLogger(filepath_acc, separator=',', append=False)
 
-    model.fit(network_input, network_output, epochs=200, batch_size=64, callbacks=callbacks_list)
+    callbacks_list = [checkpoint,accuracy, TerminateOnNaN()]
+
+    history = model.fit(network_input, network_output, epochs=2000, batch_size=64, callbacks=callbacks_list)
+    print(history.history.keys)
 
 if __name__ == '__main__':
     train_network()

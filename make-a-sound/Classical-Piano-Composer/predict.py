@@ -10,6 +10,7 @@ from keras.layers import LSTM
 from keras.layers import Activation
 
 def generate():
+    print("Generate")
     """ Generate a piano midi file """
     #load the notes used to train the model
     with open('data/notes', 'rb') as filepath:
@@ -26,6 +27,7 @@ def generate():
     create_midi(prediction_output)
 
 def prepare_sequences(notes, pitchnames, n_vocab):
+    print("prepare sequence")
     """ Prepare the sequences used by the Neural Network """
     # map between notes and integers and back
     note_to_int = dict((note, number) for number, note in enumerate(pitchnames))
@@ -49,6 +51,7 @@ def prepare_sequences(notes, pitchnames, n_vocab):
     return (network_input, normalized_input)
 
 def create_network(network_input, n_vocab):
+    print("create network")
     """ create the structure of the neural network """
     model = Sequential()
     model.add(LSTM(
@@ -72,6 +75,7 @@ def create_network(network_input, n_vocab):
     return model
 
 def generate_notes(model, network_input, pitchnames, n_vocab):
+    print("Generate notes")
     """ Generate notes from the neural network based on a sequence of notes """
     # pick a random sequence from the input as a starting point for the prediction
     start = numpy.random.randint(0, len(network_input)-1)
@@ -98,6 +102,7 @@ def generate_notes(model, network_input, pitchnames, n_vocab):
     return prediction_output
 
 def create_midi(prediction_output):
+    print("create midi")
     """ convert the output from the prediction to notes and create a midi file
         from the notes """
     offset = 0
