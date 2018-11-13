@@ -119,7 +119,7 @@ def train(model, network_input, network_output):
 
     callbacks_list = [checkpoint,accuracy, TerminateOnNaN()]
 
-    history = model.fit(network_input, network_output, epochs=2000, batch_size=64, callbacks=callbacks_list)
+    history = model.fit(network_input, network_output, epochs=200, batch_size=64, callbacks=callbacks_list)
     print(history.history.keys)
 
 if __name__ == '__main__':
