@@ -133,7 +133,7 @@ def create_midi(prediction_output):
 
     midi_stream = stream.Stream(output_notes)
 
-    midi_stream.write('midi', fp='test_output.mid')
+    midi_stream.write('midi', fp='testoutputs/test_output.mid')
 
 if __name__ == '__main__':
     generate()
