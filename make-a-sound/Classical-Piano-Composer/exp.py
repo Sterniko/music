@@ -92,14 +92,14 @@ def create_network(network_input, n_vocab):
         input_shape=(network_input.shape[1], network_input.shape[2]),
         return_sequences=True
     ))
-    model.add(Dropout(0.4))
+    model.add(Dropout(0.1))
     model.add(LSTM(512, return_sequences=True))
-    model.add(Dropout(0.4))
+    model.add(Dropout(0.1))
     model.add(LSTM(512))
     model.add(Dense(256))
-    model.add(Dropout(0.4))
+    model.add(Dropout(0.1))
     model.add(Dense(n_vocab))
-    model.add(Activation('softmax'))
+    model.add(Activation('tanh'))
     model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
 
     return model
