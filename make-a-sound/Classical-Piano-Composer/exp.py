@@ -91,9 +91,9 @@ def prepare_sequences(notes, n_vocab):
     print("7")
     # normalize input
     network_input = network_input / float(n_vocab)
-
+    print("8")
     network_output = np_utils.to_categorical(network_output)
-
+    print("return")
     return (network_input, network_output)
 
 def create_network(network_input, n_vocab, noteslength):
