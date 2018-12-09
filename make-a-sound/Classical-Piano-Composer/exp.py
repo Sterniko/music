@@ -56,18 +56,23 @@ def get_notes():
 
 def prepare_sequences(notes, n_vocab):
     """ Prepare the sequences used by the Neural Network """
+    print("sequence length \n")
     sequence_length = 50
 
     # get all pitch names
+    print("pitchnames \n")
     pitchnames = sorted(set(item for item in notes))
 
      # create a dictionary to map pitches to integers
+        print("creating dictionary \n")
     note_to_int = dict((note, number) for number, note in enumerate(pitchnames))
 
     network_input = []
     network_output = []
 
+    
     # create input sequences and the corresponding outputs
+    print("creating input sequence \n")
     for i in range(0, len(notes) - sequence_length, 1):
         sequence_in = notes[i:i + sequence_length]
         sequence_out = notes[i + sequence_length]
