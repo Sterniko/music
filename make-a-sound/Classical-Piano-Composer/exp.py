@@ -21,7 +21,7 @@ def train_network():
 
     network_input, network_output = prepare_sequences(notes, n_vocab)
 
-    model = create_network(network_input, n_vocab)
+    model = create_network(network_input, n_vocab, len(notes))
 
     train(model, network_input, network_output)
 
@@ -84,7 +84,7 @@ def prepare_sequences(notes, n_vocab):
 
     return (network_input, network_output)
 
-def create_network(network_input, n_vocab):
+def create_network(network_input, n_vocab, noteslength):
     """ create the structure of the neural network """
     model = Sequential()
     model.add(LSTM(
@@ -92,12 +92,12 @@ def create_network(network_input, n_vocab):
         input_shape=(network_input.shape[1], network_input.shape[2]),
         return_sequences=True
     ))
-    notessize = len(notes)
+    
     model.add(Dropout(0.3))
-    model.add(LSTM(notessize, return_sequences=True))
+    model.add(LSTM(noteslength, return_sequences=True))
     model.add(Dropout(0.3))
-    model.add(LSTM(notessize))
-    model.add(Dense(notessize/2))
+    model.add(LSTM(noteslength))
+    model.add(Dense(noteslength/2))
     model.add(Dropout(0.3))
     model.add(Dense(n_vocab))
     model.add(Activation('softmax'))
