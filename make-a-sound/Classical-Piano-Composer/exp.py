@@ -101,7 +101,8 @@ def create_network(network_input, n_vocab, noteslength):
     
     print(network_input)
     print(len(network_input.shape)
-    print(network_input.shape[1])
+    object = network_input.shape[1]
+    print(object)
     print("sequential")
     model = Sequential()
     print("model.add")
