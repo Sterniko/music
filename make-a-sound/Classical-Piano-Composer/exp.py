@@ -51,6 +51,7 @@ def get_notes():
     with open('data/notes', 'wb') as filepath:
         pickle.dump(notes, filepath)
 
+    print("finished getting notes \n")
     return notes
 
 def prepare_sequences(notes, n_vocab):
