@@ -98,23 +98,33 @@ def prepare_sequences(notes, n_vocab):
 
 def create_network(network_input, n_vocab, noteslength):
     """ create the structure of the neural network """
+    print("sequential")
     model = Sequential()
+    print("model.add")
     model.add(LSTM(
-        1024,
+        noteslength,
         input_shape=(network_input.shape[1], network_input.shape[2]),
         return_sequences=True
     ))
-    
+    print("dropout")
     model.add(Dropout(0.3))
+    print("LSTM")
     model.add(LSTM(noteslength, return_sequences=True))
+    print("dropout")
     model.add(Dropout(0.3))
+    print("LSTM")
     model.add(LSTM(noteslength))
+    print("Dense")
     model.add(Dense(noteslength/2))
+    print("dropout")
     model.add(Dropout(0.3))
+    print("Dense")
     model.add(Dense(n_vocab))
+    print("activation")
     model.add(Activation('softmax'))
+    print("compile")
     model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
-
+    print("return")
     return model
 
 def train(model, network_input, network_output):
