@@ -74,7 +74,7 @@ def prepare_sequences(notes, n_vocab):
     # create input sequences and the corresponding outputs
     print("creating input sequence \n")
     print("notes length %d", len(notes))
-    for i in range(0, int((len(notes)/10)+0,5)) - sequence_length, 1):
+    for i in range(0, int((len(notes)/10)+0,5) - sequence_length, 1):
         sequence_in = notes[i:i + sequence_length]
         sequence_out = notes[i + sequence_length]
         network_input.append([note_to_int[char] for char in sequence_in])
