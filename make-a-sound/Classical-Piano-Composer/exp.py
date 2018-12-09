@@ -109,7 +109,7 @@ def create_network(network_input, n_vocab, noteslength):
         noteslength,
         input_shape,
         return_sequences=True
-    )
+    ))
     print("dropout")
     model.add(Dropout(0.3))
     print("LSTM")
