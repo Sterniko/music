@@ -98,6 +98,10 @@ def prepare_sequences(notes, n_vocab):
 
 def create_network(network_input, n_vocab, noteslength):
     """ create the structure of the neural network """
+    
+    print(network_input)
+    print(len(network_input.shape)
+    print(network_input.shape[1])
     print("sequential")
     model = Sequential()
     print("model.add")
