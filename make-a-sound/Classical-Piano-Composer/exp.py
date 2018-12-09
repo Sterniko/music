@@ -73,6 +73,7 @@ def prepare_sequences(notes, n_vocab):
     
     # create input sequences and the corresponding outputs
     print("creating input sequence \n")
+    print("notes length %d", len(notes))
     for i in range(0, len(notes) - sequence_length, 1):
         sequence_in = notes[i:i + sequence_length]
         sequence_out = notes[i + sequence_length]
