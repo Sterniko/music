@@ -100,7 +100,7 @@ def create_network(network_input, n_vocab, noteslength):
     """ create the structure of the neural network """
     
     print(network_input)
-    print(len(network_input.shape)
+    print(len(network_input.shape))
     print("sequential")
     model = Sequential()
     input_shape = (network_input.shape[1], network_input.shape[2])
