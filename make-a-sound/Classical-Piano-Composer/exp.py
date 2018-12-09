@@ -64,7 +64,7 @@ def prepare_sequences(notes, n_vocab):
     pitchnames = sorted(set(item for item in notes))
 
      # create a dictionary to map pitches to integers
-        print("creating dictionary \n")
+    print("creating dictionary \n")
     note_to_int = dict((note, number) for number, note in enumerate(pitchnames))
 
     network_input = []
