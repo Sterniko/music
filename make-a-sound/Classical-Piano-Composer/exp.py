@@ -92,7 +92,7 @@ def create_network(network_input, n_vocab):
         input_shape=(network_input.shape[1], network_input.shape[2]),
         return_sequences=True
     ))
-    notessize = lne(notes)
+    notessize = len(notes)
     model.add(Dropout(0.3))
     model.add(LSTM(notessize, return_sequences=True))
     model.add(Dropout(0.3))
