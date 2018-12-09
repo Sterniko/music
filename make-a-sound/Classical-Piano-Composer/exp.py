@@ -75,13 +75,13 @@ def prepare_sequences(notes, n_vocab):
     print("creating input sequence \n")
     print("notes length %d", len(notes))
     for i in range(0, int(len(notes)/10) - sequence_length, 1):
-        print("1")
+        
         sequence_in = notes[i:i + sequence_length]
-        print("2")
+        
         sequence_out = notes[i + sequence_length]
-        print("3")
+      
         network_input.append([note_to_int[char] for char in sequence_in])
-        print("4")
+       
         network_output.append(note_to_int[sequence_out])
     print("5")
     n_patterns = len(network_input)
