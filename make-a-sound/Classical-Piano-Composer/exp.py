@@ -118,7 +118,7 @@ def create_network(network_input, n_vocab, noteslength):
     print("LSTM")
     model.add(LSTM( int(noteslength/2)))
     print("Dense")
-    model.add(Dense( int(noteslength/2))
+    model.add(Dense( int(noteslength/2)))
     print("dropout")
     model.add(Dropout(0.3))
     print("Dense")
