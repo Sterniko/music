@@ -102,12 +102,11 @@ def create_network(network_input, n_vocab, noteslength):
     print(network_input)
     print(len(network_input.shape))
     print("sequential")
-    model = Sequential()
-    input_shape = (network_input.shape[1], network_input.shape[2])
+    model = Sequential()   
     print("model.add")
     model.add(LSTM(
         noteslength,
-        input_shape,
+        input_shape = (network_input.shape[1], network_input.shape[2]),
         return_sequences=True
     ))
     print("dropout")
