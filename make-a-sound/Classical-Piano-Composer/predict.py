@@ -22,7 +22,8 @@ def generate():
     n_vocab = len(set(notes))
 
     network_input, normalized_input = prepare_sequences(notes, pitchnames, n_vocab)
-    model = create_network(normalized_input, n_vocab)
+    notessize = len(notes)
+    model = create_network(normalized_input, n_vocab, notessize)
     prediction_output = generate_notes(model, network_input, pitchnames, n_vocab)
     create_midi(prediction_output)
 
@@ -45,16 +46,16 @@ def prepare_sequences(notes, pitchnames, n_vocab):
 
     # reshape the input into a format compatible with LSTM layers
     normalized_input = numpy.reshape(network_input, (n_patterns, sequence_length, 1))
-    # normalize input
+    # normalize inputss
     normalized_input = normalized_input / float(n_vocab)
 
     return (network_input, normalized_input)
 
-def create_network(network_input, n_vocab):
+def create_network(network_input, n_vocab, notessize):
     print("create network")
     """ create the structure of the neural network """
     model = Sequential()
-    notessize = len(notes)
+   
     model.add(LSTM(
         notessize,
         input_shape=(network_input.shape[1], network_input.shape[2]),
